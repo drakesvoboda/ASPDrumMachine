@@ -14,15 +14,14 @@ namespace DrumMachine.Controllers
 			return new JsonResult();
 		} 
 
-		[HttpGet]
-		public JsonResult Machine(int machineID)
+		[HttpPost]
+		public ActionResult Machine(int machineID)
 		{
-			
-			return new JsonResult();
+			return Json(new { gridLength = 16 });
 		}
 
 		[HttpPost]
-		public JsonResult Machine(string name)
+		public JsonResult SaveMachine(string name)
 		{
 
 			return new JsonResult();

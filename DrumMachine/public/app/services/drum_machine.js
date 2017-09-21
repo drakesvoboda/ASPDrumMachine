@@ -13,12 +13,12 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 
 	function loadInstruments(instrumentFile) {
 		var item, player, instrument;
-		var file = instrumentFile || "/app/services/data/instruments/kit-1.json";
+		var file = instrumentFile || "/public/app/services/data/instruments/kit-1.json";
 
 		return $http.get(file).then(function (response) {
 			for (var i = 0; i < 4; i++) {
 				item = response.data.instruments[i];
-				player = new Howl({ urls: ["assets/audio/" + item.file] });
+				player = new Howl({ urls: ["/public/assets/audio/" + item.file] });
 				instrument = new Instrument(player, item);
 
 				_rows.push(new Row(instrument, _gridLength));
@@ -27,17 +27,8 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 		});
 	}
 
-	function addNewRow(_newRow) {
-		console.log(_newRow);
-		var player = new Howl({ urls: [_newRow.file] });
-		var instrument = new Instrument(player, { name: _newRow.name });
-
-		_rows.push(new Row(instrument, _gridLength));
-
-	}
-
 	function loadSequence(sequenceFile) {
-		var file = sequenceFile || "/app/services/data/sequences/seq-1.json";
+		var file = sequenceFile || "/public/app/services/data/sequences/seq-1.json";
 
 		reset();
 
@@ -56,6 +47,22 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 			}
 			return "Sequence Loaded";
 		});
+	}
+
+	function loadMachine(machineID) {
+		return $http.post("/Ajax/Machine", { machineID: machineID }).then(function (response) {
+			console.log(response);
+
+			return "Machine Loaded";
+		});
+	}
+
+	function addNewRow(_newRow) {
+		console.log(_newRow);
+		var player = new Howl({ urls: [_newRow.file] });
+		var instrument = new Instrument(player, { name: _newRow.name });
+
+		_rows.push(new Row(instrument, _gridLength));
 	}
 
 	function rows() {
@@ -126,6 +133,7 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 
 	// Return public functions
 	return {
+		loadMachine: loadMachine,
 		loadInstruments: loadInstruments,
 		loadSequence: loadSequence,
 		gridLength: gridLength,

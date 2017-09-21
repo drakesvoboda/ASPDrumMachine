@@ -1,24 +1,5 @@
 'use strict';
 
-app.directive("fileread", [function () {
-	return {
-		scope: {
-			fileread: "="
-		},
-		link: function (scope, element, attributes) {
-			element.bind("change", function (changeEvent) {
-				var reader = new FileReader();
-				reader.onload = function (loadEvent) {
-					scope.$apply(function () {
-						scope.fileread = loadEvent.target.result;
-					});
-				};
-				reader.readAsDataURL(changeEvent.target.files[0]);
-			});
-		}
-	};
-}]);
-
 // Drum Controller
 app.controller('DrumMachineCtrl', function ($scope) {
 	//variable to prevent multiple playloops

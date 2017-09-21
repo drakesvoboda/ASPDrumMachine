@@ -28,6 +28,7 @@
     "karma-requirejs": "latest",
     "karma-script-launcher": "latest",
     "karma-spec-reporter": "latest",
+    "phantomjs": "^2.1.7",
     "phantomjs-prebuilt": "latest",
     "requirejs": "latest"
   },
