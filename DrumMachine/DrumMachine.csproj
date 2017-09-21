@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{64A5218A-3BB7-4654-8F0B-A1CC8B4E4642}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DrumMachine</RootNamespace>
+    <AssemblyName>DrumMachine</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gruntfile.js" />
+    <Content Include="public\app\app.js" />
+    <Content Include="public\app\controllers\main.js" />
+    <Content Include="public\app\Directives\main.js" />
+    <Content Include="public\app\filters\main.js" />
+    <Content Include="public\app\services\drum_machine.js" />
+    <Content Include="public\app\services\models\beat.js" />
+    <Content Include="public\app\services\models\instrument.js" />
+    <Content Include="public\app\services\models\row.js" />
+    <Content Include="public\app\services\timer_queue.js" />
+    <Content Include="public\assets\audio\CYCdh_AcouKick-01.mp3" />
+    <Content Include="public\assets\audio\CYCdh_LudFlamA-01.mp3" />
+    <Content Include="public\assets\audio\KHats Clsd-08.mp3" />
+    <Content Include="public\assets\audio\KHats Open-04.mp3" />
+    <Content Include="public\assets\bower_components\angular-mocks\angular-mocks.js" />
+    <Content Include="public\assets\bower_components\angular-mocks\ngAnimateMock.js" />
+    <Content Include="public\assets\bower_components\angular-mocks\ngMock.js" />
+    <Content Include="public\assets\bower_components\angular-mocks\ngMockE2E.js" />
+    <Content Include="public\assets\bower_components\angular-route\angular-route.js" />
+    <Content Include="public\assets\bower_components\angular-route\angular-route.min.js" />
+    <Content Include="public\assets\bower_components\angular-route\index.js" />
+    <Content Include="public\assets\bower_components\angular\angular-csp.css" />
+    <Content Include="public\assets\bower_components\angular\angular.js" />
+    <Content Include="public\assets\bower_components\angular\angular.min.js" />
+    <Content Include="public\assets\bower_components\angular\index.js" />
+    <Content Include="public\assets\bower_components\fastclick\lib\fastclick.js" />
+    <Content Include="public\assets\bower_components\foundation\css\foundation.css" />
+    <Content Include="public\assets\bower_components\foundation\css\foundation.min.css" />
+    <Content Include="public\assets\bower_components\foundation\css\normalize.css" />
+    <Content Include="public\assets\bower_components\foundation\css\normalize.min.css" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation.min.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.abide.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.accordion.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.alert.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.clearing.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.dropdown.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.equalizer.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.interchange.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.joyride.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.magellan.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.offcanvas.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.orbit.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.reveal.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.slider.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.tab.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.tooltip.js" />
+    <Content Include="public\assets\bower_components\foundation\js\foundation\foundation.topbar.js" />
+    <Content Include="public\assets\bower_components\foundation\js\vendor\fastclick.js" />
+    <Content Include="public\assets\bower_components\foundation\js\vendor\jquery.cookie.js" />
+    <Content Include="public\assets\bower_components\foundation\js\vendor\jquery.js" />
+    <Content Include="public\assets\bower_components\foundation\js\vendor\modernizr.js" />
+    <Content Include="public\assets\bower_components\foundation\js\vendor\placeholder.js" />
+    <Content Include="public\assets\bower_components\howler\howler.js" />
+    <Content Include="public\assets\bower_components\howler\howler.min.js" />
+    <Content Include="public\assets\bower_components\jasmine\.gitignore" />
+    <Content Include="public\assets\bower_components\jasmine\.gitmodules" />
+    <Content Include="public\assets\bower_components\jasmine\Gruntfile.js" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\config\compass.js" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\config\compress.js" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\config\concat.js" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\config\jshint.js" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\tasks\build_standalone.js" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\tasks\version.js" />
+    <Content Include="public\assets\bower_components\jasmine\images\jasmine-horizontal.png" />
+    <Content Include="public\assets\bower_components\jasmine\images\jasmine-horizontal.svg" />
+    <Content Include="public\assets\bower_components\jasmine\images\jasmine_favicon.png" />
+    <Content Include="public\assets\bower_components\jasmine\lib\console\console.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\boot.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\boot\boot.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\boot\node_boot.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\example\node_example\spec\PlayerSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\example\node_example\spec\SpecHelper.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\example\node_example\src\Player.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\example\node_example\src\Song.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\example\spec\PlayerSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\example\spec\SpecHelper.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\example\src\Player.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\example\src\Song.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\jasmine-html.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\jasmine.css" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\jasmine.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\json2.js" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\node_boot.js" />
+    <Content Include="public\assets\bower_components\jasmine\requirements.txt" />
+    <Content Include="public\assets\bower_components\jasmine\spec\console\ConsoleReporterSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\AnySpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\CallTrackerSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\ClockSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\DelayedFunctionSchedulerSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\EnvSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\ExceptionFormatterSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\ExceptionsSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\ExpectationResultSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\ExpectationSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\integration\CustomMatchersSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\integration\EnvSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\integration\SpecRunningSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\JsApiReporterSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\matchersUtilSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeCloseToSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeDefinedSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeFalsySpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeGreaterThanSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeLessThanSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeNaNSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeNullSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeTruthySpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toBeUndefinedSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toContainSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toEqualSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toHaveBeenCalledSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toHaveBeenCalledWithSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toMatchSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toThrowErrorSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\matchers\toThrowSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\MockDateSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\ObjectContainingSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\PrettyPrintSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\QueueRunnerSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\ReportDispatcherSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\SpecSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\SpySpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\SpyStrategySpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\SuiteSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\TimerSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\core\UtilSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\helpers\BrowserFlags.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\helpers\defineJasmineUnderTest.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\helpers\nodeDefineJasmineUnderTest.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\html\HtmlReporterSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\html\HtmlSpecFilterSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\html\MatchersHtmlSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\html\PrettyPrintHtmlSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\html\QueryStringSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\html\ResultsNodeSpec.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\performance\large_object_test.js" />
+    <Content Include="public\assets\bower_components\jasmine\spec\performance\performance_test.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\console\ConsoleReporter.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\console\requireConsole.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\Any.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\base.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\CallTracker.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\Clock.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\DelayedFunctionScheduler.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\Env.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\ExceptionFormatter.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\Expectation.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\ExpectationResult.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\JsApiReporter.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\matchersUtil.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\requireMatchers.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBe.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeCloseTo.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeDefined.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeFalsy.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeGreaterThan.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeLessThan.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeNaN.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeNull.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeTruthy.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toBeUndefined.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toContain.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toEqual.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toHaveBeenCalled.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toHaveBeenCalledWith.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toMatch.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toThrow.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\matchers\toThrowError.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\MockDate.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\ObjectContaining.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\PrettyPrinter.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\QueueRunner.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\ReportDispatcher.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\requireCore.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\requireInterface.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\Spec.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\SpyStrategy.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\Suite.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\Timer.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\core\util.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\html\HtmlReporter.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\html\HtmlSpecFilter.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\html\QueryString.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\html\requireHtml.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\html\ResultsNode.js" />
+    <Content Include="public\assets\bower_components\jasmine\src\version.js" />
+    <Content Include="public\assets\bower_components\jquery-placeholder\jquery.placeholder.js" />
+    <Content Include="public\assets\bower_components\jquery.cookie\jquery.cookie.js" />
+    <Content Include="public\assets\bower_components\jquery\AUTHORS.txt" />
+    <Content Include="public\assets\bower_components\jquery\dist\core.js" />
+    <Content Include="public\assets\bower_components\jquery\dist\jquery.js" />
+    <Content Include="public\assets\bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="public\assets\bower_components\jquery\dist\jquery.slim.js" />
+    <Content Include="public\assets\bower_components\jquery\dist\jquery.slim.min.js" />
+    <Content Include="public\assets\bower_components\jquery\external\sizzle\dist\sizzle.js" />
+    <Content Include="public\assets\bower_components\jquery\external\sizzle\dist\sizzle.min.js" />
+    <Content Include="public\assets\bower_components\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="public\assets\bower_components\jquery\LICENSE.txt" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax.js" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax\jsonp.js" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax\load.js" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax\parseXML.js" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax\script.js" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax\var\location.js" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax\var\nonce.js" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax\var\rquery.js" />
+    <Content Include="public\assets\bower_components\jquery\src\ajax\xhr.js" />
+    <Content Include="public\assets\bower_components\jquery\src\attributes.js" />
+    <Content Include="public\assets\bower_components\jquery\src\attributes\attr.js" />
+    <Content Include="public\assets\bower_components\jquery\src\attributes\classes.js" />
+    <Content Include="public\assets\bower_components\jquery\src\attributes\prop.js" />
+    <Content Include="public\assets\bower_components\jquery\src\attributes\support.js" />
+    <Content Include="public\assets\bower_components\jquery\src\attributes\val.js" />
+    <Content Include="public\assets\bower_components\jquery\src\callbacks.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\access.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\DOMEval.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\init.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\nodeName.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\parseHTML.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\ready-no-deferred.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\ready.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\readyException.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\stripAndCollapse.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\support.js" />
+    <Content Include="public\assets\bower_components\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\addGetHookIf.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\adjustCSS.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\curCSS.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\showHide.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\support.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\var\cssExpand.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\var\getStyles.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\var\isHiddenWithinTree.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\var\rmargin.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="public\assets\bower_components\jquery\src\css\var\swap.js" />
+    <Content Include="public\assets\bower_components\jquery\src\data.js" />
+    <Content Include="public\assets\bower_components\jquery\src\data\Data.js" />
+    <Content Include="public\assets\bower_components\jquery\src\data\var\acceptData.js" />
+    <Content Include="public\assets\bower_components\jquery\src\data\var\dataPriv.js" />
+    <Content Include="public\assets\bower_components\jquery\src\data\var\dataUser.js" />
+    <Content Include="public\assets\bower_components\jquery\src\deferred.js" />
+    <Content Include="public\assets\bower_components\jquery\src\deferred\exceptionHook.js" />
+    <Content Include="public\assets\bower_components\jquery\src\deprecated.js" />
+    <Content Include="public\assets\bower_components\jquery\src\dimensions.js" />
+    <Content Include="public\assets\bower_components\jquery\src\effects.js" />
+    <Content Include="public\assets\bower_components\jquery\src\effects\animatedSelector.js" />
+    <Content Include="public\assets\bower_components\jquery\src\effects\Tween.js" />
+    <Content Include="public\assets\bower_components\jquery\src\event.js" />
+    <Content Include="public\assets\bower_components\jquery\src\event\ajax.js" />
+    <Content Include="public\assets\bower_components\jquery\src\event\alias.js" />
+    <Content Include="public\assets\bower_components\jquery\src\event\focusin.js" />
+    <Content Include="public\assets\bower_components\jquery\src\event\support.js" />
+    <Content Include="public\assets\bower_components\jquery\src\event\trigger.js" />
+    <Content Include="public\assets\bower_components\jquery\src\exports\amd.js" />
+    <Content Include="public\assets\bower_components\jquery\src\exports\global.js" />
+    <Content Include="public\assets\bower_components\jquery\src\jquery.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\buildFragment.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\getAll.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\setGlobalEval.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\support.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\var\rscriptType.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\var\rtagName.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\wrapMap.js" />
+    <Content Include="public\assets\bower_components\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="public\assets\bower_components\jquery\src\offset.js" />
+    <Content Include="public\assets\bower_components\jquery\src\queue.js" />
+    <Content Include="public\assets\bower_components\jquery\src\queue\delay.js" />
+    <Content Include="public\assets\bower_components\jquery\src\selector-native.js" />
+    <Content Include="public\assets\bower_components\jquery\src\selector-sizzle.js" />
+    <Content Include="public\assets\bower_components\jquery\src\selector.js" />
+    <Content Include="public\assets\bower_components\jquery\src\serialize.js" />
+    <Content Include="public\assets\bower_components\jquery\src\traversing.js" />
+    <Content Include="public\assets\bower_components\jquery\src\traversing\findFilter.js" />
+    <Content Include="public\assets\bower_components\jquery\src\traversing\var\dir.js" />
+    <Content Include="public\assets\bower_components\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="public\assets\bower_components\jquery\src\traversing\var\siblings.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\arr.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\class2type.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\concat.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\document.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\documentElement.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\fnToString.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\getProto.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\hasOwn.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\indexOf.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\ObjectFunctionString.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\pnum.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\push.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\rcssNum.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\rnothtmlwhite.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\slice.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\support.js" />
+    <Content Include="public\assets\bower_components\jquery\src\var\toString.js" />
+    <Content Include="public\assets\bower_components\jquery\src\wrap.js" />
+    <Content Include="public\assets\bower_components\modernizr\.gitignore" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\a-download.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\audio-audiodata-api.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\audio-webaudio-api.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\battery-api.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\battery-level.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\blob-constructor.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\canvas-todataurl-type.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\contenteditable.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\contentsecuritypolicy.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\contextmenu.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\cookies.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\cors.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-backgroundposition-shorthand.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-backgroundposition-xy.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-backgroundrepeat.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-backgroundsizecover.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-boxsizing.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-calc.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-cubicbezierrange.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-displayrunin.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-displaytable.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-filters.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-hyphens.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-lastchild.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-mask.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-mediaqueries.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-objectfit.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-overflow-scrolling.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-pointerevents.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-positionsticky.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-regions.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-remunit.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-resize.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-scrollbars.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-shapes.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-subpixelfont.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-supports.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-userselect.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-vhunit.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-vmaxunit.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-vminunit.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\css-vwunit.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\custom-protocol-handler.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\dart.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\dataview-api.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\dom-classlist.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\dom-createElement-attrs.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\dom-dataset.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\dom-microdata.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\elem-datalist.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\elem-details.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\elem-output.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\elem-progress-meter.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\elem-ruby.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\elem-time.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\elem-track.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\emoji.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\es5-strictmode.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\event-deviceorientation-motion.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\exif-orientation.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\file-api.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\file-filesystem.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\forms-fileinput.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\forms-formattribute.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\forms-inputnumber-l10n.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\forms-placeholder.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\forms-speechinput.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\forms-validation.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\fullscreen-api.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\gamepad.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\getusermedia.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\ie8compat.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\iframe-sandbox.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\iframe-seamless.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\iframe-srcdoc.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\img-apng.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\img-webp.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\json.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\lists-reversed.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\mathml.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\network-connection.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\network-eventsource.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\network-xhr2.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\notification.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\performance.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\pointerlock-api.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\quota-management-api.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\requestanimationframe.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\script-async.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\script-defer.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\style-scoped.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\svg-filters.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\unicode.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\url-data-uri.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\userdata.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\vibration.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\web-intents.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\webgl-extensions.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\websockets-binary.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\window-framed.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\workers-blobworkers.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\workers-dataworkers.js" />
+    <Content Include="public\assets\bower_components\modernizr\feature-detects\workers-sharedworkers.js" />
+    <Content Include="public\assets\bower_components\modernizr\grunt.js" />
+    <Content Include="public\assets\bower_components\modernizr\media\Modernizr 2 Logo.png" />
+    <Content Include="public\assets\bower_components\modernizr\media\Modernizr 2 Logo.svg" />
+    <Content Include="public\assets\bower_components\modernizr\modernizr.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\basic.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\alpha.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\apng_test.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\before-after.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\form_validation.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\ga.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\green5x5.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\hashchange.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\jquery.min.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\mathml.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\mathml_ref.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\modernizr-1.7.min.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\png_alpha_result.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\pushstate.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\red30x30.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\ruby.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\stroked-text.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\style.css" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\svg-html-blur.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\svg-img.svg" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\svg_blur.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\table.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\text-shadow1.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\text-shadow2.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\Windsong-webfont.svg" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\windsong_font.png" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\xhtml.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\index.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\basic.html" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\dumpdata.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\lib\detect-global.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\lib\jquery-1.7b2.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\lib\jsonselect.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\lib\polyfills.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\lib\uaparser.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\setup.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\unit-caniuse.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\js\unit.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\qunit\qunit.css" />
+    <Content Include="public\assets\bower_components\modernizr\test\qunit\qunit.js" />
+    <Content Include="public\assets\bower_components\modernizr\test\qunit\run-qunit.js" />
+    <Content Include="public\assets\images\ready-to-groove.png" />
+    <Content Include="public\dist\css\main.css" />
+    <Content Include="public\dist\js\angular_drums.min.js" />
+    <Content Include="index.html" />
+    <Content Include="sql\init.sql" />
+    <Content Include="test\karma.conf.js" />
+    <Content Include="test\unit\app\controllers\main.spec.js" />
+    <Content Include="test\unit\app\services\drum_machine.spec.js" />
+    <Content Include="test\unit\app\services\models\beat.spec.js" />
+    <Content Include="test\unit\app\services\models\instrument.spec.js" />
+    <Content Include="test\unit\app\services\models\row.spec.js" />
+    <Content Include="test\unit\app\services\timer_queue.spec.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+    <None Include="packages.config" />
+    <Content Include="README.md" />
+    <Content Include="public\app\services\data\instruments\kit-1.json" />
+    <Content Include="public\app\services\data\sequences\seq-1.json" />
+    <Content Include="public\assets\bower.json" />
+    <Content Include="public\assets\bower_components\angular-mocks\.bower.json" />
+    <Content Include="public\assets\bower_components\angular-mocks\bower.json" />
+    <Content Include="public\assets\bower_components\angular-mocks\LICENSE.md" />
+    <Content Include="public\assets\bower_components\angular-mocks\package.json" />
+    <Content Include="public\assets\bower_components\angular-mocks\README.md" />
+    <Content Include="public\assets\bower_components\angular-route\.bower.json" />
+    <Content Include="public\assets\bower_components\angular-route\angular-route.min.js.map" />
+    <Content Include="public\assets\bower_components\angular-route\bower.json" />
+    <Content Include="public\assets\bower_components\angular-route\LICENSE.md" />
+    <Content Include="public\assets\bower_components\angular-route\package.json" />
+    <Content Include="public\assets\bower_components\angular-route\README.md" />
+    <Content Include="public\assets\bower_components\angular\.bower.json" />
+    <Content Include="public\assets\bower_components\angular\angular.min.js.gzip" />
+    <Content Include="public\assets\bower_components\angular\angular.min.js.map" />
+    <Content Include="public\assets\bower_components\angular\bower.json" />
+    <Content Include="public\assets\bower_components\angular\LICENSE.md" />
+    <Content Include="public\assets\bower_components\angular\package.json" />
+    <Content Include="public\assets\bower_components\angular\README.md" />
+    <Content Include="public\assets\bower_components\fastclick\.bower.json" />
+    <Content Include="public\assets\bower_components\fastclick\bower.json" />
+    <Content Include="public\assets\bower_components\fastclick\LICENSE" />
+    <Content Include="public\assets\bower_components\fastclick\README.md" />
+    <Content Include="public\assets\bower_components\foundation\.bower.json" />
+    <Content Include="public\assets\bower_components\foundation\bower.json" />
+    <Content Include="public\assets\bower_components\foundation\css\foundation.css.map" />
+    <Content Include="public\assets\bower_components\foundation\css\normalize.css.map" />
+    <Content Include="public\assets\bower_components\foundation\LICENSE" />
+    <Content Include="public\assets\bower_components\foundation\package.json" />
+    <Content Include="public\assets\bower_components\foundation\README.md" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_accordion.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_alert-boxes.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_block-grid.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_breadcrumbs.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_button-groups.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_buttons.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_clearing.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_dropdown-buttons.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_dropdown.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_flex-video.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_forms.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_global.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_grid.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_icon-bar.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_inline-lists.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_joyride.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_keystrokes.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_labels.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_magellan.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_offcanvas.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_orbit.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_pagination.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_panels.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_pricing-tables.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_progress-bars.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_range-slider.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_reveal.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_side-nav.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_split-buttons.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_sub-nav.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_switches.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_tables.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_tabs.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_thumbs.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_tooltips.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_top-bar.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_type.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\components\_visibility.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\_functions.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\foundation\_settings.scss" />
+    <Content Include="public\assets\bower_components\foundation\scss\normalize.scss" />
+    <Content Include="public\assets\bower_components\howler\.bower.json" />
+    <Content Include="public\assets\bower_components\howler\bower.json" />
+    <Content Include="public\assets\bower_components\howler\CHANGELOG.md" />
+    <Content Include="public\assets\bower_components\howler\LICENSE.md" />
+    <Content Include="public\assets\bower_components\howler\package.json" />
+    <Content Include="public\assets\bower_components\howler\README.md" />
+    <Content Include="public\assets\bower_components\jasmine\.bower.json" />
+    <Content Include="public\assets\bower_components\jasmine\.jshintrc" />
+    <Content Include="public\assets\bower_components\jasmine\.npmignore" />
+    <Content Include="public\assets\bower_components\jasmine\.rspec" />
+    <Content Include="public\assets\bower_components\jasmine\.travis.yml" />
+    <Content Include="public\assets\bower_components\jasmine\CONTRIBUTING.md" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-1.0.0.zip" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-1.1.0.zip" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-1.2.0.zip" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-1.3.0.zip" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-1.3.1.zip" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-2.0.0.zip" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-2.0.1.zip" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-2.0.2.zip" />
+    <Content Include="public\assets\bower_components\jasmine\dist\jasmine-standalone-2.0.3.zip" />
+    <Content Include="public\assets\bower_components\jasmine\Gemfile" />
+    <Content Include="public\assets\bower_components\jasmine\GOALS_2.0.md" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\templates\licenseBanner.js.jst" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\templates\SpecRunner.html.jst" />
+    <Content Include="public\assets\bower_components\jasmine\grunt\templates\version.rb.jst" />
+    <Content Include="public\assets\bower_components\jasmine\images\__init__.py" />
+    <Content Include="public\assets\bower_components\jasmine\jasmine-core.gemspec" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core.rb" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\core.py" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\spec" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\version.rb" />
+    <Content Include="public\assets\bower_components\jasmine\lib\jasmine-core\__init__.py" />
+    <Content Include="public\assets\bower_components\jasmine\MANIFEST.in" />
+    <Content Include="public\assets\bower_components\jasmine\MIT.LICENSE" />
+    <Content Include="public\assets\bower_components\jasmine\package.json" />
+    <Content Include="public\assets\bower_components\jasmine\Rakefile" />
+    <Content Include="public\assets\bower_components\jasmine\README.md" />
+    <Content Include="public\assets\bower_components\jasmine\RELEASE.md" />
+    <Content Include="public\assets\bower_components\jasmine\release_notes\2.0.1.md" />
+    <Content Include="public\assets\bower_components\jasmine\release_notes\2.0.2.md" />
+    <Content Include="public\assets\bower_components\jasmine\release_notes\20.md" />
+    <Content Include="public\assets\bower_components\jasmine\setup.py" />
+    <Content Include="public\assets\bower_components\jasmine\spec\javascripts\support\jasmine_selenium_runner.yml" />
+    <Content Include="public\assets\bower_components\jasmine\spec\support\jasmine-performance.json" />
+    <Content Include="public\assets\bower_components\jasmine\spec\support\jasmine-performance.yml" />
+    <Content Include="public\assets\bower_components\jasmine\spec\support\jasmine.json" />
+    <Content Include="public\assets\bower_components\jasmine\spec\support\jasmine.yml" />
+    <Content Include="public\assets\bower_components\jasmine\src\html\jasmine.scss" />
+    <Content Include="public\assets\bower_components\jasmine\src\html\_HTMLReporter.scss" />
+    <Content Include="public\assets\bower_components\jasmine\src\templates\example_project_jasmine_tags.html.erb" />
+    <Content Include="public\assets\bower_components\jasmine\src\templates\version.js.erb" />
+    <Content Include="public\assets\bower_components\jasmine\src\templates\version.rb.erb" />
+    <Content Include="public\assets\bower_components\jasmine\travis-core-script.sh" />
+    <Content Include="public\assets\bower_components\jasmine\travis-docs-script.sh" />
+    <Content Include="public\assets\bower_components\jasmine\travis-node-script.sh" />
+    <Content Include="public\assets\bower_components\jquery-placeholder\.bower.json" />
+    <Content Include="public\assets\bower_components\jquery-placeholder\bower.json" />
+    <Content Include="public\assets\bower_components\jquery.cookie\.bower.json" />
+    <Content Include="public\assets\bower_components\jquery.cookie\bower.json" />
+    <Content Include="public\assets\bower_components\jquery\.bower.json" />
+    <Content Include="public\assets\bower_components\jquery\bower.json" />
+    <Content Include="public\assets\bower_components\jquery\dist\jquery.min.map" />
+    <Content Include="public\assets\bower_components\jquery\dist\jquery.slim.min.map" />
+    <Content Include="public\assets\bower_components\jquery\external\sizzle\dist\sizzle.min.map" />
+    <Content Include="public\assets\bower_components\jquery\README.md" />
+    <Content Include="public\assets\bower_components\jquery\src\.eslintrc.json" />
+    <Content Include="public\assets\bower_components\modernizr\.bower.json" />
+    <Content Include="public\assets\bower_components\modernizr\.editorconfig" />
+    <Content Include="public\assets\bower_components\modernizr\.travis.yml" />
+    <Content Include="public\assets\bower_components\modernizr\media\Modernizr 2 Logo.ai" />
+    <Content Include="public\assets\bower_components\modernizr\media\Modernizr 2 Logo.eps" />
+    <Content Include="public\assets\bower_components\modernizr\media\Modernizr 2 Logo.pdf" />
+    <Content Include="public\assets\bower_components\modernizr\readme.md" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\svg-img.svg.1" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\Windsong-webfont.eot" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\Windsong-webfont.otf" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\Windsong-webfont.ttf" />
+    <Content Include="public\assets\bower_components\modernizr\test\caniuse_files\Windsong-webfont.woff" />
+    <Content Include="public\assets\sass\main.scss" />
+    <Content Include="public\assets\sass\_settings.scss" />
+    <Content Include="public\dist\css\main.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49798</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49798/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
