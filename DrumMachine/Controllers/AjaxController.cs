@@ -4,29 +4,81 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace DrumMachine.Controllers
 {
+
 	public class AjaxController : Controller
 	{
+		drummachineEntities db = new drummachineEntities();
 		[HttpGet]
-		public JsonResult SavedMachines()
+		public ActionResult SavedMachines()
 		{
+
+
 			return new JsonResult();
-		} 
+		}
 
 		[HttpPost]
 		public ActionResult Machine(int machineID)
 		{
-			return Json(new { gridLength = 16 });
+			DrumMachine.machine machine = db.machines.Where(x => x.id == machineID).FirstOrDefault();
+
+			return Json(machine);
 		}
 
 		[HttpPost]
-		public JsonResult SaveMachine(string name)
+		public ActionResult SaveMachine(int machineID, string name, int gridLength, int tempo)
 		{
+			DrumMachine.machine machine = db.machines.Where(x => x.id == machineID).FirstOrDefault();
+			if (machine == null)
+			{
+				return CreateMachine(name, gridLength, tempo);
+			}
+			else
+			{
+				machine.gridLength = gridLength;
+				machine.name = name;
+				machine.tempo = tempo;
+			}
 
-			return new JsonResult();
+			db.SaveChanges();
+
+			return Json(machine);
 		}
 
+		[HttpPost]
+		public ActionResult CreateMachine(string name, int gridLength, int tempo) {
+
+			var machine = new DrumMachine.machine()
+			{
+				name = name,
+				gridLength = gridLength,
+				tempo = tempo
+			};
+
+			db.machines.Add(machine);
+			db.SaveChanges();
+
+			return Json(machine);
+		}
+
+		[HttpPost]
+		public ActionResult SaveGrid(IDictionary<string, object> model)
+		{
+			DrumMachine.instrument instrument = db.instruments.Where(x => x.id == 0).FirstOrDefault();
+			if (instrument == null)
+			{
+				
+			}
+			else
+			{
+			}
+
+			
+
+			return Json(instrument);
+		}
 
 	}
 }

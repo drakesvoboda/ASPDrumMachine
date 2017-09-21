@@ -60,13 +60,17 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -157,12 +161,53 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="DrummachineContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DrummachineContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrummachineDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DrummachineDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrummachineDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DrummachineDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrummachineDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DrummachineDataModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="instrument.cs">
+      <DependentUpon>DrummachineContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="machine.cs">
+      <DependentUpon>DrummachineContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DrummachineContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DrummachineContext.cs</LastGenOutput>
+      <DependentUpon>DrummachineDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DrummachineDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DrummachineDataModel.edmx</DependentUpon>
+      <LastGenOutput>DrummachineDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DrummachineDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DrummachineDataModel.edmx</DependentUpon>
+      <LastGenOutput>DrummachineDataModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -650,6 +695,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />
+    <EntityDeploy Include="DrummachineDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DrummachineDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DrummachineDataModel.edmx.diagram">
+      <DependentUpon>DrummachineDataModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="README.md" />
     <Content Include="public\app\services\data\instruments\kit-1.json" />
@@ -811,6 +863,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

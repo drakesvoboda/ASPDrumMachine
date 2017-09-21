@@ -47,4 +47,8 @@ app.controller('DrumMachineCtrl', function ($scope) {
 		bpm.style.display = 'inline-block';
 		bpmEdit.style.display = 'none';
 	};
+
+	$scope.saveMachine = function () {
+		$scope.machine.saveMachine();
+	};
 });

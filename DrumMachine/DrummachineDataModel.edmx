@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="drummachineModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="instruments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="machineid" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+          <Property Name="description" Type="varchar" MaxLength="20" />
+          <Property Name="sequence" Type="varchar" MaxLength="20" />
+          <Property Name="audiofile" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="machines">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+          <Property Name="gridLength" Type="int" />
+          <Property Name="tempo" Type="int" />
+        </EntityType>
+        <Association Name="instruments_ibfk_1">
+          <End Role="machines" Type="Self.machines" Multiplicity="0..1" />
+          <End Role="instruments" Type="Self.instruments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="machines">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="instruments">
+              <PropertyRef Name="machineid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="drummachineModelStoreContainer">
+          <EntitySet Name="instruments" EntityType="Self.instruments" Schema="drummachine" store:Type="Tables" />
+          <EntitySet Name="machines" EntityType="Self.machines" Schema="drummachine" store:Type="Tables" />
+          <AssociationSet Name="instruments_ibfk_1" Association="Self.instruments_ibfk_1">
+            <End Role="machines" EntitySet="machines" />
+            <End Role="instruments" EntitySet="instruments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="drummachineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="instrument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="machineid" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="sequence" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="audiofile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="machine" Relationship="Self.instruments_ibfk_1" FromRole="instruments" ToRole="machines" />
+        </EntityType>
+        <EntityType Name="machine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="gridLength" Type="Int32" />
+          <Property Name="tempo" Type="Int32" />
+          <NavigationProperty Name="instruments" Relationship="Self.instruments_ibfk_1" FromRole="machines" ToRole="instruments" />
+        </EntityType>
+        <Association Name="instruments_ibfk_1">
+          <End Role="machines" Type="Self.machine" Multiplicity="0..1" />
+          <End Role="instruments" Type="Self.instrument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="machines">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="instruments">
+              <PropertyRef Name="machineid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="drummachineEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="instruments" EntityType="Self.instrument" />
+          <EntitySet Name="machines" EntityType="Self.machine" />
+          <AssociationSet Name="instruments_ibfk_1" Association="Self.instruments_ibfk_1">
+            <End Role="machines" EntitySet="machines" />
+            <End Role="instruments" EntitySet="instruments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="drummachineModelStoreContainer" CdmEntityContainer="drummachineEntities">
+          <EntitySetMapping Name="instruments">
+            <EntityTypeMapping TypeName="drummachineModel.instrument">
+              <MappingFragment StoreEntitySet="instruments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="machineid" ColumnName="machineid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+                <ScalarProperty Name="audiofile" ColumnName="audiofile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="machines">
+            <EntityTypeMapping TypeName="drummachineModel.machine">
+              <MappingFragment StoreEntitySet="machines">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gridLength" ColumnName="gridLength" />
+                <ScalarProperty Name="tempo" ColumnName="tempo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

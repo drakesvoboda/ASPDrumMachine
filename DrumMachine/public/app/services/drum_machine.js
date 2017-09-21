@@ -10,6 +10,8 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 	var _tempo = 120;
 	var _timers = timerQueue;
 	var _rows = [];
+	var _name = "New Machine";
+	var _machineID = 0;
 
 	function loadInstruments(instrumentFile) {
 		var item, player, instrument;
@@ -54,6 +56,17 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 			console.log(response);
 
 			return "Machine Loaded";
+		});
+	}
+
+	function saveMachine() {
+		return $http.post("/Ajax/SaveMachine", { machineID: _machineID, name: _name, gridLength: _gridLength, tempo: _tempo }).then(function (response) {
+			//for (var i = 0, len = _rows.length; i < len; ++i) {
+			//	_rows[i].saveRow(_machineID, $http);
+			//}
+			console.log(response);
+			_machineID = response.data.id;
+			return "Machine Saved";
 		});
 	}
 
@@ -144,6 +157,7 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 		play: play,
 		stop: stop,
 		reset: reset,
-		addNewRow: addNewRow
+		addNewRow: addNewRow,
+		saveMachine: saveMachine
 	}
 });
