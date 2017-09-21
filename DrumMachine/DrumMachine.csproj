@@ -185,6 +185,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\data.cs" />
+    <Compile Include="Helpers\DbContextExtensions.cs" />
     <Compile Include="instrument.cs">
       <DependentUpon>DrummachineContext.tt</DependentUpon>
     </Compile>
@@ -217,7 +218,7 @@
     <Content Include="Gruntfile.js" />
     <Content Include="public\app\app.js" />
     <Content Include="public\app\controllers\main.js" />
-    <Content Include="public\app\Directives\main.js" />
+    <Content Include="public\app\directives\main.js" />
     <Content Include="public\app\filters\main.js" />
     <Content Include="public\app\services\drum_machine.js" />
     <Content Include="public\app\services\models\beat.js" />

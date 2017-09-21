@@ -5,43 +5,48 @@ using System.Web;
 using System.Web.Mvc;
 using System.Reflection;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects;
 
 namespace DrumMachine.Helpers
 {
 	public class Data<T> : IDisposable where T : class
 	{
-		public Data()
+		public T InsertOrUpdate(T entity)
 		{
-			var type = typeof(drummachineEntities);
-			foreach (PropertyInfo field in db.GetType().GetProperties(System.Reflection.BindingFlags.Public
-	| System.Reflection.BindingFlags.Instance
-	| System.Reflection.BindingFlags.DeclaredOnly))
+			db.AddOrAttach<T>(entity);
+			db.SaveChanges();
+			return entity;
+		}
+
+		public T Insert(T entity)
+		{
+			db.Set<T>().Add(entity);
+			db.SaveChanges();
+			return entity;
+		}
+
+		public T Update(T entity, int key)
+		{
+			if (entity == null)
+				return null;
+
+			T existing = db.Set<T>().Find(key);
+
+			if (existing != null)
 			{
-				System.Diagnostics.Debug.WriteLine(field.Name);
-				System.Diagnostics.Debug.WriteLine(field.GetType());
-
-				if (field.PropertyType.GenericTypeArguments.Contains(typeof(T)))
-				{
-					System.Diagnostics.Debug.WriteLine(field.PropertyType.GenericTypeArguments[0].Name);
-				}
+				db.Entry(existing).CurrentValues.SetValues(entity);
+				db.SaveChanges();
 			}
-		}
 
-		public void InsertOrUpdate(T model)
-		{
+			return existing;
 
 		}
 
-		public void Insert(T model) { }
-
-		public void Update(T model)
+		public T Get(int key)
 		{
-
-		}
-
-		public void Get(int id)
-		{
-
+			return db.Set<T>().Find(key);
 		}
 
 		public void Dispose()
@@ -50,6 +55,5 @@ namespace DrumMachine.Helpers
 		}
 
 		public drummachineEntities db = new drummachineEntities();
-		public DbSet<T> dbSet;
 	}
 }

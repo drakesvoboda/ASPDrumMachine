@@ -60,12 +60,24 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 	}
 
 	function saveMachine() {
-		return $http.post("/Ajax/SaveMachine", { machineID: _machineID, name: _name, gridLength: _gridLength, tempo: _tempo }).then(function (response) {
+		$http.post("/Ajax/SaveMachine", { machineID: _machineID, name: _name, gridLength: _gridLength, tempo: _tempo }).then(function (response) {
 			//for (var i = 0, len = _rows.length; i < len; ++i) {
 			//	_rows[i].saveRow(_machineID, $http);
 			//}
 			console.log(response);
 			_machineID = response.data.id;
+			return "Machine Saved";
+		});
+
+		$http.post("/Ajax/SaveMachine", { name: "Added 1", gridLength: 15, tempo: 150 }).then(function (response) {
+			return "Machine Saved";
+		});
+
+		$http.post("/Ajax/SaveMachine", { name: "Added 2", gridLength: 12, tempo: 150 }).then(function (response) {
+			return "Machine Saved";
+		});
+
+		$http.post("/Ajax/SaveMachine", { machineID: 1, name: "Update", gridLength: 12, tempo: 150 }).then(function (response) {
 			return "Machine Saved";
 		});
 	}
