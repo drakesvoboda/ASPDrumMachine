@@ -22,33 +22,40 @@ namespace DrumMachine.Controllers
 		[HttpPost]
 		public ActionResult Machine(int machineID)
 		{
-			DrumMachine.machine machine = db.machines.Where(x => x.id == machineID).FirstOrDefault();
+			using (DrumMachine.Helpers.Data<DrumMachine.machine> DataHelper = new DrumMachine.Helpers.Data<DrumMachine.machine>())
+			{
+				DrumMachine.machine machine = db.machines.Where(x => x.id == machineID).FirstOrDefault();
 
-			return Json(machine);
+				return Json(machine);
+			}
 		}
 
 		[HttpPost]
 		public ActionResult SaveMachine(int machineID, string name, int gridLength, int tempo)
 		{
-			DrumMachine.machine machine = db.machines.Where(x => x.id == machineID).FirstOrDefault();
-			if (machine == null)
+			using (DrumMachine.Helpers.Data<DrumMachine.machine> DataHelper = new DrumMachine.Helpers.Data<DrumMachine.machine>())
 			{
-				return CreateMachine(name, gridLength, tempo);
-			}
-			else
-			{
-				machine.gridLength = gridLength;
-				machine.name = name;
-				machine.tempo = tempo;
-			}
+				DrumMachine.machine machine = db.machines.SingleOrDefault(x => x.id == machineID);
+				if (machine == null)
+				{
+					return CreateMachine(name, gridLength, tempo);
+				}
+				else
+				{
+					machine.gridLength = gridLength;
+					machine.name = name;
+					machine.tempo = tempo;
+				}
 
-			db.SaveChanges();
+				db.SaveChanges();
 
-			return Json(machine);
+				return Json(machine);
+			}
 		}
 
 		[HttpPost]
-		public ActionResult CreateMachine(string name, int gridLength, int tempo) {
+		public ActionResult CreateMachine(string name, int gridLength, int tempo)
+		{
 
 			var machine = new DrumMachine.machine()
 			{
@@ -69,13 +76,13 @@ namespace DrumMachine.Controllers
 			DrumMachine.instrument instrument = db.instruments.Where(x => x.id == 0).FirstOrDefault();
 			if (instrument == null)
 			{
-				
+
 			}
 			else
 			{
 			}
 
-			
+
 
 			return Json(instrument);
 		}

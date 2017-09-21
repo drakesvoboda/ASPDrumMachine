@@ -11,7 +11,7 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 	var _timers = timerQueue;
 	var _rows = [];
 	var _name = "New Machine";
-	var _machineID = 0;
+	var _machineID = 1;
 
 	function loadInstruments(instrumentFile) {
 		var item, player, instrument;

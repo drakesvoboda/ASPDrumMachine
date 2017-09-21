@@ -184,6 +184,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\data.cs" />
     <Compile Include="instrument.cs">
       <DependentUpon>DrummachineContext.tt</DependentUpon>
     </Compile>

@@ -32,7 +32,7 @@
 				<button id="play" class="button small success radius" ng-click="playLoop()">Play</button>
 				<button id="pause" class="button small alert radius" ng-click="stopLoop()">Stop</button>
 				<button id="reset" class="button small radius" ng-click="resetLoop()">Clear</button>
-				<button id="reset" class="button small radius" ng-click="saveMachine()">Save</button>
+				<button id="reset" class="button small radius" ng-click="machine.saveMachine()">Save</button>
 				<div id="readout">
 					<span id="tempo">
 						<input type="range" min="60" max="180" ng-change="updateTempo()" ng-model="tempo">
