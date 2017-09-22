@@ -40,7 +40,6 @@ namespace DrumMachine.Helpers
 				db.Entry(existing).CurrentValues.SetValues(entity);
 				db.SaveChanges();
 			}
-
 			return existing;
 
 		}
