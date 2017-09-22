@@ -15,12 +15,11 @@ namespace DrumMachine
     public partial class instrument
     {
         public int id { get; set; }
-        public Nullable<int> machineid { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
+        public Nullable<int> machineID { get; set; }
+        public Nullable<int> soundID { get; set; }
         public string sequence { get; set; }
-        public string audiofile { get; set; }
     
         public virtual machine machine { get; set; }
+        public virtual sound sound { get; set; }
     }
 }

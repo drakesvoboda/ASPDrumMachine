@@ -27,5 +27,6 @@ namespace DrumMachine
     
         public virtual DbSet<instrument> instruments { get; set; }
         public virtual DbSet<machine> machines { get; set; }
+        public virtual DbSet<sound> sounds { get; set; }
     }
 }
