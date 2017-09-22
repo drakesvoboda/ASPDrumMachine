@@ -18,6 +18,7 @@ namespace DrumMachine.Helpers
 			if (entity == null) return;
 
 			var entry = context.Entry(entity);
+
 			var leaveStates = new[]
 			{
 			EntityState.Deleted,
@@ -30,7 +31,7 @@ namespace DrumMachine.Helpers
 			var entityKey = context.GetEntityKey(entity);
 			if (entityKey == null)
 			{
-				entry.State = EntityState.Unchanged;
+				entry.State = EntityState.Modified;
 				entityKey = context.GetEntityKey(entity);
 			}
 			if (entityKey.EntityKeyValues == null
@@ -44,9 +45,8 @@ namespace DrumMachine.Helpers
 			where T : class
 		{
 			var oc = ((IObjectContextAdapter)context).ObjectContext;
-			ObjectStateEntry ose;
 			if (null != entity && oc.ObjectStateManager
-									.TryGetObjectStateEntry(entity, out ose))
+									.TryGetObjectStateEntry(entity, out ObjectStateEntry ose))
 			{
 				return ose.EntityKey;
 			}

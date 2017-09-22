@@ -24,6 +24,7 @@ namespace DrumMachine.Helpers
 		{
 			db.Set<T>().Add(entity);
 			db.SaveChanges();
+
 			return entity;
 		}
 

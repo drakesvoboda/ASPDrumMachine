@@ -11,7 +11,7 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 	var _timers = timerQueue;
 	var _rows = [];
 	var _name = "New Machine";
-	var _machineID = 1;
+	var _machineID = 0;
 
 	function loadInstruments(instrumentFile) {
 		var item, player, instrument;
@@ -61,24 +61,24 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 
 	function saveMachine() {
 		$http.post("/Ajax/SaveMachine", { machineID: _machineID, name: _name, gridLength: _gridLength, tempo: _tempo }).then(function (response) {
-			//for (var i = 0, len = _rows.length; i < len; ++i) {
-			//	_rows[i].saveRow(_machineID, $http);
-			//}
 			console.log(response);
-			_machineID = response.data.id;
-			return "Machine Saved";
-		});
+			
 
-		$http.post("/Ajax/SaveMachine", { name: "Added 1", gridLength: 15, tempo: 150 }).then(function (response) {
-			return "Machine Saved";
-		});
+			console.log(response);
 
-		$http.post("/Ajax/SaveMachine", { name: "Added 2", gridLength: 12, tempo: 150 }).then(function (response) {
-			return "Machine Saved";
-		});
+			$http.post("/Ajax/SaveMachine", { name: "Added 1", gridLength: 15, tempo: 150 }).then(function (response2) {
+				_machineID = response2.data.id;
+				console.log(response2);
 
-		$http.post("/Ajax/SaveMachine", { machineID: 1, name: "Update", gridLength: 12, tempo: 150 }).then(function (response) {
-			return "Machine Saved";
+				$http.post("/Ajax/SaveMachine", { name: "Added 2", gridLength: 12, tempo: 150 }).then(function (response3) {
+
+					console.log(response3);
+
+					$http.post("/Ajax/SaveMachine", { machineID: _machineID, name: "Update", gridLength: 12, tempo: 2 }).then(function (response4) {
+						console.log(response4);
+					});
+				});
+			});
 		});
 	}
 

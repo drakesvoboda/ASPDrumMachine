@@ -33,31 +33,13 @@ namespace DrumMachine.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult SaveMachine(string name, int gridLength, int tempo, int machineID)
+		public ActionResult SaveMachine(string name, int gridLength, int tempo, int machineID = 0)
 		{
 			using (Helpers.Data<machine> DataHelper = new Helpers.Data<machine>())
 			{
 				machine dm = new machine()
 				{
 					id = machineID,
-					name = name,
-					gridLength = gridLength,
-					tempo = tempo
-				};
-
-				dm = DataHelper.InsertOrUpdate(dm);
-
-				return Json(dm);
-			}
-		}
-
-		[HttpPost]
-		public ActionResult SaveMachine(string name, int gridLength, int tempo)
-		{
-			using (Helpers.Data<machine> DataHelper = new Helpers.Data<machine>())
-			{
-				machine dm = new machine()
-				{
 					name = name,
 					gridLength = gridLength,
 					tempo = tempo
