@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DrumMachine;
-
+using DrumMachine.Helpers;
+using Newtonsoft.Json;
 
 namespace DrumMachine.Controllers
 {
@@ -24,18 +25,21 @@ namespace DrumMachine.Controllers
 		[HttpPost]
 		public ActionResult Machine(int machineID)
 		{
-			using (Helpers.Data<machine> DataHelper = new Helpers.Data<machine>())
+			using (DataHelper<machine> dataHelper = new DataHelper<machine>())
 			{
-				machine machine = DataHelper.Get(machineID);
+				machine machine = dataHelper.Get(machineID);
 
-				return Json(machine);
+				return Content(JsonConvert.SerializeObject(machine, new JsonSerializerSettings
+				{
+					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+				}), "application/json");
 			}
 		}
 
 		[HttpPost]
 		public ActionResult SaveMachine(string name, int gridLength, int tempo, int machineID = 0)
 		{
-			using (Helpers.Data<machine> DataHelper = new Helpers.Data<machine>())
+			using (DataHelper<machine> dataHelper = new DataHelper<machine>())
 			{
 				machine dm = new machine()
 				{
@@ -45,16 +49,20 @@ namespace DrumMachine.Controllers
 					tempo = tempo
 				};
 
-				dm = DataHelper.InsertOrUpdate(dm);
+				dm = dataHelper.InsertOrUpdate(dm);
 
-				return Json(dm);
+				return Content(JsonConvert.SerializeObject(dm, new JsonSerializerSettings
+				{
+					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+				}), "application/json");
+
 			}
 		}
 
 		[HttpPost]
 		public ActionResult CreateMachine(string name, int gridLength, int tempo)
 		{
-			using (Helpers.Data<machine> DataHelper = new Helpers.Data<machine>())
+			using (DataHelper<machine> dataHelper = new DataHelper<machine>())
 			{
 				machine dm = new machine()
 				{
@@ -63,18 +71,34 @@ namespace DrumMachine.Controllers
 					tempo = tempo
 				};
 
-				dm = DataHelper.Insert(dm);
+				dm = dataHelper.Insert(dm);
 
 				return Json(dm);
-			}			
+			}
 		}
 
 		[HttpPost]
-		public ActionResult SaveGrid(IDictionary<string, object> model)
+		public ActionResult SaveGrid(int machineID, string data)
 		{
+			object json = JsonConvert.DeserializeObject(data);
 
-			return Json("");
+			instrument instrument = JsonConvert.DeserializeObject<instrument>(data);
+			instrument.machineID = machineID;
+			instrument.audiofile = instrument.sound.audiofile;
+
+			using (drummachineEntities db = new drummachineEntities())
+			{
+				db.AddOrAttach<instrument>(instrument);
+
+				db.AddOrAttach<sound>(instrument.sound);
+
+				db.SaveChanges();
+
+				return Content(JsonConvert.SerializeObject(instrument, new JsonSerializerSettings
+				{
+					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+				}), "application/json");
+			}
 		}
-
 	}
 }

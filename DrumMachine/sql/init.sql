@@ -10,20 +10,19 @@ CREATE TABLE Machines(
 );
 
 CREATE TABLE Sounds(
-	id INTEGER NOT NULL AUTO_INCREMENT,
 	name VARCHAR(1024),
     description VARCHAR(1024),
 	audiofile VARCHAR(1024),
-	PRIMARY KEY(id)
+	PRIMARY KEY(audiofile)
 );
 
 
 CREATE TABLE Instruments(
     id INTEGER NOT NULL AUTO_INCREMENT,
     machineID INTEGER, 
-	soundID INTEGER,
+	audiofile VARCHAR(1024),
     sequence VARCHAR(1024), 
     PRIMARY KEY(id),
     FOREIGN KEY(machineID) REFERENCES Machines(id),
-	FOREIGN KEY(soundID) REFERENCES Sounds(id)
+	FOREIGN KEY(audiofile) REFERENCES Sounds(audiofile)
 );

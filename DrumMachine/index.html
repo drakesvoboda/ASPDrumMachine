@@ -54,8 +54,8 @@
 				<li class="dm-row" ng-repeat="row in machine.rows()">
 					<ul class="instrument">
 						<li class='instrument-name'>
-							{{row.getInstrument().getName()}}<br>
-							<span>{{row.getInstrument().getDescription()}}</span>
+							{{row.getSound().getName()}}<br>
+							<span>{{row.getSound().getDescription()}}</span>
 						</li>
 						<li ng-repeat="beat in row.getBeats()">
 							<button class="btn" ng-class="{'btn-on':beat.isActive()}"

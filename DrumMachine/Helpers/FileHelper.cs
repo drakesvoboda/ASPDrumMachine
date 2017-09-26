@@ -7,8 +7,9 @@ using DrumMachine.Models;
 
 namespace DrumMachine.Helpers
 {
-	public class File
+	public class FileHelper
 	{
+
 		public FileUploadResponse UploadFile(HttpPostedFileBase file, bool overwite = false)
 		{
 

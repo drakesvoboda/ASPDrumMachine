@@ -11,7 +11,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace DrumMachine.Helpers
 {
-	public class Data<T> : IDisposable where T : class
+	public class DataHelper<T> : IDisposable where T : class
 	{
 		public T InsertOrUpdate(T entity)
 		{

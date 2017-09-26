@@ -53,7 +53,18 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 
 	function loadMachine(machineID) {
 		return $http.post("/Ajax/Machine", { machineID: machineID }).then(function (response) {
+			_gridLength = response.data.gridLength;
+			_name = response.data.name;
+			_machineID = response.data.id;
+
+			setTempo(response.data.tempo);
+
 			console.log(response);
+			for (var i = 0, len = response.data.instruments.length; i < len; ++i) {
+				var json = response.data.instruments[i];
+
+				_rows.push(new Instrument(json));
+			}
 
 			return "Machine Loaded";
 		});
@@ -61,31 +72,29 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 
 	function saveMachine() {
 		$http.post("/Ajax/SaveMachine", { machineID: _machineID, name: _name, gridLength: _gridLength, tempo: _tempo }).then(function (response) {
-			console.log(response);
-			
 
-			console.log(response);
+			_machineID = response.data.id;
 
-			$http.post("/Ajax/SaveMachine", { name: "Added 1", gridLength: 15, tempo: 150 }).then(function (response2) {
-				_machineID = response2.data.id;
-				console.log(response2);
+			var json = "";
 
-				$http.post("/Ajax/SaveMachine", { name: "Added 2", gridLength: 12, tempo: 150 }).then(function (response3) {
+			for (var i = 0, len = _rows.length; i < len; ++i) {
+				var row = _rows[i];
+				json += row.toString();
+			}
 
-					console.log(response3);
-
-					$http.post("/Ajax/SaveMachine", { machineID: _machineID, name: "Update", gridLength: 12, tempo: 2 }).then(function (response4) {
-						console.log(response4);
-					});
-				});
+			$http.post("/Ajax/SaveGrid", {
+				machineID: _machineID,
+				data: json
 			});
 		});
 	}
 
 	function addNewRow(_newRow) {
 		console.log(_newRow);
+
 		var player = new Howl({ urls: [_newRow.file] });
-		var instrument = new Instrument(player, { name: _newRow.name });
+
+		var instrument = new Instrument();
 
 		_rows.push(new Row(instrument, _gridLength));
 	}
@@ -141,6 +150,7 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 			for (var i = 0; i < _rows.length; i++) {
 				_rows[i].playSound(_currentBeat);
 			}
+
 			_currentBeat += 1;
 			_timers.add(playBeat(), _delay);
 		};
