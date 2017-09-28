@@ -11,7 +11,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="machineID" Type="int" />
-          <Property Name="audiofile" Type="varchar" MaxLength="1024" />
+          <Property Name="soundID" Type="int" />
           <Property Name="sequence" Type="varchar" MaxLength="1024" />
         </EntityType>
         <EntityType Name="machines">
@@ -25,11 +25,12 @@
         </EntityType>
         <EntityType Name="sounds">
           <Key>
-            <PropertyRef Name="audiofile" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="1024" />
           <Property Name="description" Type="varchar" MaxLength="1024" />
-          <Property Name="audiofile" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="audiofile" Type="varchar" MaxLength="1024" />
         </EntityType>
         <Association Name="instruments_ibfk_1">
           <End Role="machines" Type="Self.machines" Multiplicity="0..1" />
@@ -48,10 +49,10 @@
           <End Role="instruments" Type="Self.instruments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="sounds">
-              <PropertyRef Name="audiofile" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="instruments">
-              <PropertyRef Name="audiofile" />
+              <PropertyRef Name="soundID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -91,7 +92,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="machineID" Type="Int32" />
-          <Property Name="audiofile" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="soundID" Type="Int32" />
           <Property Name="sequence" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="machine" Relationship="drummachineModel.instruments_ibfk_1" FromRole="instrument" ToRole="machine" />
           <NavigationProperty Name="sound" Relationship="drummachineModel.instruments_ibfk_2" FromRole="instrument" ToRole="sound" />
@@ -108,11 +109,12 @@
         </EntityType>
         <EntityType Name="sound">
           <Key>
-            <PropertyRef Name="audiofile" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
-          <Property Name="audiofile" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="audiofile" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="instruments" Relationship="drummachineModel.instruments_ibfk_2" FromRole="sound" ToRole="instrument" />
         </EntityType>
         <Association Name="instruments_ibfk_1">
@@ -132,10 +134,10 @@
           <End Type="drummachineModel.instrument" Role="instrument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="sound">
-              <PropertyRef Name="audiofile" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="instrument">
-              <PropertyRef Name="audiofile" />
+              <PropertyRef Name="soundID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -149,7 +151,7 @@
             <EntityTypeMapping TypeName="drummachineModel.instrument">
               <MappingFragment StoreEntitySet="instruments">
                 <ScalarProperty Name="sequence" ColumnName="sequence" />
-                <ScalarProperty Name="audiofile" ColumnName="audiofile" />
+                <ScalarProperty Name="soundID" ColumnName="soundID" />
                 <ScalarProperty Name="machineID" ColumnName="machineID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -171,6 +173,7 @@
                 <ScalarProperty Name="audiofile" ColumnName="audiofile" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

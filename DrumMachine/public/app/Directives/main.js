@@ -10,9 +10,11 @@ app.directive("fileread", [function () {
 				var reader = new FileReader();
 				reader.onload = function (loadEvent) {
 					scope.$apply(function () {
-						scope.fileread = loadEvent.target.result;
+						scope.fileread = {data:loadEvent.target.result, name: changeEvent.target.files[0].name };
+					
 					});
 				};
+				
 				reader.readAsDataURL(changeEvent.target.files[0]);
 			});
 		}

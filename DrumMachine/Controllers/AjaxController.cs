@@ -80,21 +80,23 @@ namespace DrumMachine.Controllers
 		[HttpPost]
 		public ActionResult SaveGrid(int machineID, string data)
 		{
-			object json = JsonConvert.DeserializeObject(data);
-
-			instrument instrument = JsonConvert.DeserializeObject<instrument>(data);
-			instrument.machineID = machineID;
-			instrument.audiofile = instrument.sound.audiofile;
+			List<instrument> insturmentsToSave = JsonConvert.DeserializeObject<List<instrument>>(data);
 
 			using (drummachineEntities db = new drummachineEntities())
 			{
-				db.AddOrAttach<instrument>(instrument);
 
-				db.AddOrAttach<sound>(instrument.sound);
+				foreach(var item in insturmentsToSave)
+				{				
+					item.machineID = machineID;
+
+					db.AddOrAttach<sound>(item.sound);
+					db.AddOrAttach<instrument>(item);
+					
+				}
 
 				db.SaveChanges();
 
-				return Content(JsonConvert.SerializeObject(instrument, new JsonSerializerSettings
+				return Content(JsonConvert.SerializeObject(insturmentsToSave, new JsonSerializerSettings
 				{
 					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 				}), "application/json");

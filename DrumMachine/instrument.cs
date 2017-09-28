@@ -16,7 +16,7 @@ namespace DrumMachine
     {
         public int id { get; set; }
         public Nullable<int> machineID { get; set; }
-        public string audiofile { get; set; }
+        public Nullable<int> soundID { get; set; }
         public string sequence { get; set; }
     
         public virtual machine machine { get; set; }

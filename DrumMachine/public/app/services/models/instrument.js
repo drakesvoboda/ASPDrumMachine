@@ -1,18 +1,14 @@
 'use strict';
 
-var Instrument = function (json) {
+var Instrument = function (id, sequence, sound) {
 
-
-	var player = new Howl({ urls: ["/sounds/" + json.sound.audiofile] });
-
-	var _sound = new Sound(json.name, json.description, json.audiofile, player);
-
+	var _sound = sound;
 
 	var _beats = [];
-	var _instrumentID = json.id;
+	var _instrumentID = id;
 
 	// Add initial beats
-	addBeats(json.sequence);
+	addBeats(sequence);
 
 	function addBeats(sequence) {
 		for (var i = 0; i < sequence.length; i++) {
@@ -52,7 +48,9 @@ var Instrument = function (json) {
 			var obj = {
 				sequence: sequence,
 				id: _instrumentID,
+				soundID: _sound.getID(),
 				sound: {
+					id: _sound.getID(),
 					name: _sound.getName(),
 					description: _sound.getDescrption(),
 					audiofile: _sound.getAudiofile()

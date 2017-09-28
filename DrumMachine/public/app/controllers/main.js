@@ -32,7 +32,6 @@ app.controller('DrumMachineCtrl', function ($scope) {
 	};
 
 	$scope.addNewRow = function (_newRow) {
-		console.log(_newRow);
 		$scope.machine.addNewRow(_newRow);
 	};
 

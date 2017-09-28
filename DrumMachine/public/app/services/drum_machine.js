@@ -59,11 +59,13 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 
 			setTempo(response.data.tempo);
 
-			console.log(response);
 			for (var i = 0, len = response.data.instruments.length; i < len; ++i) {
 				var json = response.data.instruments[i];
 
-				_rows.push(new Instrument(json));
+				var player = new Howl({ urls: ["/sounds/" + json.sound.audiofile] });
+				var sound = new Sound(json.sound.id, json.sound.name, json.sound.description, json.sound.audiofile, player);
+
+				_rows.push(new Instrument(json.id, json.sequence, sound));
 			}
 
 			return "Machine Loaded";
@@ -75,28 +77,25 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 
 			_machineID = response.data.id;
 
-			var json = "";
+			var json = [];
 
 			for (var i = 0, len = _rows.length; i < len; ++i) {
 				var row = _rows[i];
-				json += row.toString();
+				json.push(row.toString());
 			}
 
 			$http.post("/Ajax/SaveGrid", {
 				machineID: _machineID,
-				data: json
+				data: "[" + json.toString() + "]"
 			});
 		});
 	}
 
-	function addNewRow(_newRow) {
-		console.log(_newRow);
+	function addNewRow(newRow) {
+		var player = new Howl({ urls: [newRow.file.data] });
+		var sound = new Sound(0, newRow.name, "", newRow.file.name, player);
 
-		var player = new Howl({ urls: [_newRow.file] });
-
-		var instrument = new Instrument();
-
-		_rows.push(new Row(instrument, _gridLength));
+		_rows.push(new Instrument(0, Array(_gridLength + 1).join("0"), sound));
 	}
 
 	function rows() {
