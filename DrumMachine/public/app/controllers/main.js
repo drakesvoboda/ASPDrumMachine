@@ -30,12 +30,27 @@ app.controller('DrumMachineCtrl', function ($scope) {
 		$scope.machine.setTempo($scope.tempo);
 	};
 
+	$scope.setName = function (name) {
+		$scope.machine.setName(name);
+	};
+
 	$scope.addNewRow = function (_newRow) {
 		$scope.machine.addNewRow(_newRow);
 	};
 
 	$scope.selectMachine = function (id) {
-		console.log(id);
+		$scope.loading = true;
+
+		$scope.machine.loadMachine(id).then(function (result) {
+			$scope.loading = false;
+		});
+	}
+
+	$scope.saveMachine = function () {
+		$scope.machine.saveMachine().then(function () {
+			$scope.machineNav.loadNav();
+		});
+		
 	}
 
 	$scope.EditBPM = function () {

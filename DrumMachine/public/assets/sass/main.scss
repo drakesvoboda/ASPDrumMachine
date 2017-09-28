@@ -36,6 +36,10 @@ button:focus, input:focus {
 	outline: 1px dashed $bg-inst;
 }
 
+input {
+	color: #000;
+}
+
 /* Start Loading Animation */
 /* By Adonis K., http://codepen.io/adonisk/pen/IAzbo */
 $loader-size: 0.5em;
@@ -252,14 +256,6 @@ $loader-size: 0.5em;
 			}
 		}
 	}
-
-	.add-row {
-		padding: 15px 25px;
-		input{
-			color: #000;
-		}
-	}
-
 
 	ul li {
 		flex-grow: 1;

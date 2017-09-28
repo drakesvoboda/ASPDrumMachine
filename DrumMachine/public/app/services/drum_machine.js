@@ -14,10 +14,25 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 	var _machineID = 0;
 
 	function loadMachine(machineID) {
+
+		_machineID = machineID;
+		_rows = [];
+
+
+		if (_machineID == 0) {
+			_tempo = 120;
+			_delay = 100;
+			_gridLength = 16;
+			_name = "New Machine";
+			var dfd = $q.defer();
+			dfd.resolve();
+			return dfd.promise;
+		}
+
 		return $http.post("/Ajax/Machine", { machineID: machineID }).then(function (response) {
 			_gridLength = response.data.gridLength;
 			_name = response.data.name;
-			_machineID = response.data.id;
+			_tempo = response.data.tempo;
 
 			setTempo(response.data.tempo);
 
@@ -32,6 +47,7 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 
 			return "Machine Loaded";
 		});
+
 	}
 
 	function saveMachine() {
@@ -139,6 +155,8 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 		stop: stop,
 		reset: reset,
 		addNewRow: addNewRow,
-		saveMachine: saveMachine
+		saveMachine: saveMachine,
+		setName: function (name) { _name = name; },
+		getName: function () { return _name; }
 	}
 });
