@@ -35,7 +35,7 @@ app.controller('DrumMachineCtrl', function ($scope) {
 	};
 
 	$scope.selectMachine = function (id) {
-		
+		console.log(id);
 	}
 
 	$scope.EditBPM = function () {

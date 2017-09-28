@@ -10,6 +10,9 @@ app.factory('machineNav', function ($http, $q, timerQueue) {
 			for (var i = 0, len = response.data.length; i < len; ++i){
 				_machines.push(new MachineNavItem(response.data.id, response.data.name));
 			}
+
+			_machines.push(new MachineNavItem(0, "New Machine"));
+
 			return "Nav Loaded";
 		});
 	}

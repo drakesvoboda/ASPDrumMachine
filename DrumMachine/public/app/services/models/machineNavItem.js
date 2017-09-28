@@ -1,6 +1,6 @@
 'use strict';
 
-var MachineNavItem = function (name, id) {
+var MachineNavItem = function (id, name) {
 	var _machineID = id;
 	var _name = name;
 
