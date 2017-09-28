@@ -10,7 +10,6 @@ app.controller('DrumMachineCtrl', function ($scope) {
 		if (!$scope.lock) {
 			$scope.machine.play();
 			$scope.fade_msg_play = true;
-			console.log('Playing');
 			$scope.lock = true;
 		}
 	};
@@ -34,6 +33,10 @@ app.controller('DrumMachineCtrl', function ($scope) {
 	$scope.addNewRow = function (_newRow) {
 		$scope.machine.addNewRow(_newRow);
 	};
+
+	$scope.selectMachine = function (id) {
+		
+	}
 
 	$scope.EditBPM = function () {
 		var bpmEdit = document.getElementById('bpmEdit');

@@ -13,44 +13,6 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 	var _name = "New Machine";
 	var _machineID = 0;
 
-	function loadInstruments(instrumentFile) {
-		var item, player, instrument;
-		var file = instrumentFile || "/public/app/services/data/instruments/kit-1.json";
-
-		return $http.get(file).then(function (response) {
-			for (var i = 0; i < 4; i++) {
-				item = response.data.instruments[i];
-				player = new Howl({ urls: ["/public/assets/audio/" + item.file] });
-				instrument = new Instrument(player, item);
-
-				_rows.push(new Row(instrument, _gridLength));
-			}
-			return "Instruments Loaded";
-		});
-	}
-
-	function loadSequence(sequenceFile) {
-		var file = sequenceFile || "/public/app/services/data/sequences/seq-1.json";
-
-		reset();
-
-		return $http.get(file).then(function (response) {
-			_gridLength = response.data.gridLength;
-			setTempo(response.data.tempo);
-
-			for (var i = 0; i < 4; i++) {
-				for (var j = 0; j < _gridLength; j++) {
-					if (response.data.rows[i][j] === "1") {
-						_rows[i].getBeats()[j].activate();
-					} else {
-						_rows[i].getBeats()[j].deactivate();
-					}
-				}
-			}
-			return "Sequence Loaded";
-		});
-	}
-
 	function loadMachine(machineID) {
 		return $http.post("/Ajax/Machine", { machineID: machineID }).then(function (response) {
 			_gridLength = response.data.gridLength;
@@ -73,7 +35,7 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 	}
 
 	function saveMachine() {
-		$http.post("/Ajax/SaveMachine", { machineID: _machineID, name: _name, gridLength: _gridLength, tempo: _tempo }).then(function (response) {
+		return $http.post("/Ajax/SaveMachine", { machineID: _machineID, name: _name, gridLength: _gridLength, tempo: _tempo }).then(function (response) {
 
 			_machineID = response.data.id;
 
@@ -168,8 +130,6 @@ app.factory('drumMachine', function ($http, $q, timerQueue) {
 	// Return public functions
 	return {
 		loadMachine: loadMachine,
-		loadInstruments: loadInstruments,
-		loadSequence: loadSequence,
 		gridLength: gridLength,
 		currentBeat: currentBeat,
 		rows: rows,

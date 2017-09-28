@@ -17,7 +17,7 @@ namespace DrumMachine.Controllers
 		{
 			using (drummachineEntities db = new drummachineEntities())
 			{
-				var result = db.machines.Select(x => new { x.id, x.name });
+				var result = db.machines.Select(x => new { x.id, x.name }).ToList();
 				return Json(result);
 			}
 		}

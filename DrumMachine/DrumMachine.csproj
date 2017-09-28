@@ -225,7 +225,9 @@
     <Content Include="public\app\controllers\main.js" />
     <Content Include="public\app\directives\main.js" />
     <Content Include="public\app\filters\main.js" />
+    <Content Include="public\app\services\machine_nav.js" />
     <Content Include="public\app\services\drum_machine.js" />
+    <Content Include="public\app\services\models\machineNavItem.js" />
     <Content Include="public\app\services\models\beat.js" />
     <Content Include="public\app\services\models\sound.js" />
     <Content Include="public\app\services\models\instrument.js" />
@@ -889,7 +891,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49798</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49798/</IISUrl>
+          <IISUrl>http://localhost:49797/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
